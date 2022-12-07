@@ -6,11 +6,11 @@ import { PricingComponent } from './pricing/pricing.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'pricing', component: PricingComponent },
-  { path: '', pathMatch: 'full', redirectTo: '/home' }
+  { path: '', pathMatch: 'full', redirectTo: '/home' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

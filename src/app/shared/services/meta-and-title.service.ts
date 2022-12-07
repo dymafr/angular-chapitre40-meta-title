@@ -1,11 +1,11 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { Router, RouterEvent, NavigationEnd } from '@angular/router';
+import { Router, Event, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Meta, Title } from '@angular/platform-browser';
 import metaData from '../helpers/meta-data';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MetaAndTitleService implements OnDestroy {
   private subscription = new Subscription();
@@ -16,7 +16,7 @@ export class MetaAndTitleService implements OnDestroy {
     private title: Title
   ) {
     this.subscription.add(
-      this.router.events.subscribe((event: RouterEvent) => {
+      this.router.events.subscribe((event: Event) => {
         if (event instanceof NavigationEnd) {
           const url = event.url;
           this.updateTitle(url);
@@ -34,12 +34,12 @@ export class MetaAndTitleService implements OnDestroy {
     const oldTagDescription = this.meta.getTag('name="description"');
     const newTagDescription = {
       name: 'description',
-      content: metaData[url].metas.description
+      content: metaData[url].metas.description,
     };
     const oldTagOgTitle = this.meta.getTag('name="og:title"');
     const newTagOgTitle = {
       name: 'og:title',
-      content: metaData[url].metas['og:title']
+      content: metaData[url].metas['og:title'],
     };
 
     oldTagDescription
